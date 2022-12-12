@@ -39,21 +39,37 @@ public class FormatNumString {
 
 
         S=S.replaceAll(" ", "").replaceAll("-", "");
-//        System.out.println(S);
-      StringBuffer result= new StringBuffer(S);
-      int z = 3;
-        for (int i = 0; i < S.length()/3; i++ ) {
-            result.insert(z,"-");
-            z+=4;
+if(S.length()>2) {
+    StringBuffer result = new StringBuffer(S);
+    int z = 3;
+    for (int i = 0; i < S.length() / 3; i++) {
+        result.insert(z, "-");
+        z += 4;
 
-        }
+    }
 
-        System.out.println(result);
+    StringBuffer buf = new StringBuffer();
+
+    if (result.charAt(result.length() - 1) == '-') {
+        result.deleteCharAt(result.length() - 1);
+    }
+    if (result.charAt(result.length() - 2) == '-') {
+        buf.append(result.charAt(result.length() - 3));
+        result.setCharAt(result.length() - 3, result.charAt(result.length() - 2));
+        result.setCharAt(result.length() - 2, buf.charAt(0));
+    }
+    {
+
+    }
+    System.out.println(result);
+}else {
+    System.out.println("Short pnone number");
+}
 
     }
 
     public static void main(String[] args) {
-        manipulation("022-198-53-24");
+        manipulation("00-44 48 5555 8361");
     }
 
 }
